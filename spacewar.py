@@ -58,6 +58,26 @@ class Enemy(Sprite):
         Sprite.__init__(self, spriteshape, color, startx, starty)
         self.speed = 6
         self.setheading(random.randint(0,360))
+class Ally(Sprite):
+    def __init__(self, spriteshape, color, startx, starty):
+        Sprite.__init__(self, spriteshape, color, startx, starty)
+        self.speed = 8
+        self.setheading(random.randint(0,360))
+    def move(self):
+        self.forward(self.speed)
+        #boundary
+        if self.xcor() >290:
+            self.setx(290)
+            self.left(60)
+        if self.xcor() < -290:
+            self.setx(-290)
+            self.left(60)
+        if self.ycor() >290:
+            self.sety(290)
+            self.left(60)
+        if self.ycor() < -290:
+            self.sety(-290)
+            self.left(60)
 class Missiles(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
@@ -109,6 +129,7 @@ game.draw_border()
 player = Player("triangle","white",0,0)
 enemy = Enemy("circle","red",-100,0)
 missile = Missiles("triangle", "yellow", 0,0)
+ally = Ally("square", "blue", 0, 0)
 
 #keyboard settings
 turtle.onkey(player.turn_left,"Left")
@@ -123,6 +144,7 @@ while True:
     player.move()
     enemy.move()
     missile.move()
+    ally.move()
 
     #collison
     if player.collision(enemy):
@@ -135,6 +157,11 @@ while True:
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
         enemy.goto(x, y)
+        missile.status = "ready"
+    if missile.collision(ally):
+        x = random.randint(-250, 250)
+        y = random.randint(-250, 250)
+        ally.goto(x, y)
         missile.status = "ready"
 
 
