@@ -4,6 +4,8 @@ import random
 #turtle.fd(0)
 turtle.speed(0)#animation speed
 turtle.bgcolor("black")#background color
+turtle.bgpic("space1.gif")
+turtle.title("StarWars")
 turtle.hideturtle()
 turtle.setundobuffer(1)#saves memory
 turtle.tracer(0)#speeds up drawing
@@ -43,6 +45,7 @@ class Sprite(turtle.Turtle):
 class Player(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
+        self.shapesize(stretch_wid = 0.6, stretch_len = 1.1, outline=None)
         self.speed = 4
         self.lives = 3
     def turn_left(self):
@@ -81,7 +84,7 @@ class Ally(Sprite):
 class Missiles(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
-        self.shapesize(stretch_wid = 0.3, stretch_len=0.4, outline = None)
+        self.shapesize(stretch_wid = 0.2, stretch_len=0.4, outline = None)
         self.speed = 20
         self.status = "ready"
         self.goto(-1000,1000)
