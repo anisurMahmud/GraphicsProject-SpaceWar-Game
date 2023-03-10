@@ -120,10 +120,20 @@ class Game():
             self.pen.right(90)
         self.pen.penup()
         self.pen.hideturtle()
+        self.pen.pendown()
+    def gStatus(self):
+        self.pen.undo()
+        msg = "Score %s" %(self.score)
+        self.pen.penup()
+        self.pen.goto(-300,310)
+        self.pen.write(msg, font =("Arial",16,"normal"))
 #game object
 game = Game()
 #game border
 game.draw_border()
+
+#game_status
+game.gStatus()
 
 #sprite creations
 player = Player("triangle","white",0,0)
@@ -151,6 +161,8 @@ while True:
         x = random.randint(-250,250)
         y = random.randint(-250, 250)
         enemy.goto(x,y)
+        game.score -= 100
+        game.gStatus()
 
     #check missile collision
     if missile.collision(enemy):
@@ -158,11 +170,15 @@ while True:
         y = random.randint(-250, 250)
         enemy.goto(x, y)
         missile.status = "ready"
+        game.score +=100 #game score increase
+        game.gStatus()
     if missile.collision(ally):
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
         ally.goto(x, y)
         missile.status = "ready"
+        game.score -= 50
+        game.gStatus()
 
 
 delay = input("Press enter to finish. >")
