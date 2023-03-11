@@ -1,6 +1,7 @@
 import turtle
 import time
 import random
+import os
 turtle.speed(0)#animation speed
 turtle.bgcolor("black")#background color
 turtle.bgpic("space1.gif")
