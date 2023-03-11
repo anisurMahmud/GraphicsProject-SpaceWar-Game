@@ -1,7 +1,6 @@
 import turtle
 import time
 import random
-#turtle.fd(0)
 turtle.speed(0)#animation speed
 turtle.bgcolor("black")#background color
 turtle.bgpic("space1.gif")
@@ -16,7 +15,7 @@ class Sprite(turtle.Turtle):
         self.speed(0)#speed of animation
         self.penup() #don't draw yet
         self.color(color)
-        #self.fd(0)
+
         self.goto(startx,starty)
         self.speed = 1
     def move(self):
@@ -98,7 +97,7 @@ class Missiles(Sprite):
             self.goto(-1000,1000)
         if self.status == "firing":
             self.forward(self.speed)
-        #border forder
+        #border
         if self.xcor() < -290 or self.xcor() > 290 or \
             self.ycor()< -290 or self.ycor() > 290:
             self.goto(-1000,1000)
@@ -157,10 +156,9 @@ game.draw_border()
 game.gStatus()
 
 #sprite creations
+
 player = Player("triangle","white",0,0)
-#enemy = Enemy("circle","red",-100,0)
 missile = Missiles("triangle", "yellow", 0,0)
-#ally = Ally("square", "blue", 100, 0)
 
 enemies = []
 for i in range(6):
@@ -186,9 +184,8 @@ while True:
     turtle.update()
     time.sleep(0.03)
     player.move()
-    #enemy.move()
     missile.move()
-    #ally.move()
+   
     #enemies
     for enemy in enemies:
         enemy.move()
