@@ -1,7 +1,4 @@
 
-def print_hi(name):
-    print(f'Hi, {name}')
-
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
+string = '2 times 3'
+new = string.replace("times","x")
+print(new)
